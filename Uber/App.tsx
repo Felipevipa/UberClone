@@ -25,6 +25,10 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
@@ -49,6 +53,7 @@ function Section({children, title}: SectionProps): JSX.Element {
             color: isDarkMode ? Colors.light : Colors.dark,
           },
         ]}>
+        <Icon name="rocket" size={30} color="#900" />;
         {children}
       </Text>
     </View>
