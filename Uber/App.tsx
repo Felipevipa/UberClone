@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import HomeScreen from './src/screens/HomeScreen';
+import DestinationSearch from './src/screens/DestinationSearch';
 
 
 function App(): JSX.Element {
@@ -20,7 +21,8 @@ function App(): JSX.Element {
       <StatusBar
         barStyle='dark-content'
       />
-      <HomeScreen />
+      {/* <HomeScreen /> */}
+      <DestinationSearch />
     </>
   );
 }
