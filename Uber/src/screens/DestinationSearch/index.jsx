@@ -1,27 +1,64 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, TextInput, SafeAreaView } from "react-native"
 
 import styles from './styles'
 
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+
 function DestinationSearch() {
-  const [fromText, setFromText] = useState('')
-  const [destinationText, setDestinationText] = useState('')
+
+  const [originPlace, setOriginPlace] = useState(null)
+  const [destinationPlace, setDestinationPlace] = useState(null)
+
+  useEffect(() => {
+    if (originPlace && destinationPlace) {
+    // implement here the navigation ⚠
+      console.warn('Redirect to results');
+    }
+  }, [originPlace, destinationPlace])
 
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <TextInput
-          value={fromText}
-          onChangeText={setFromText}
-          style={styles.textInput}
-          placeholder='From' />
-        <TextInput
-          value={destinationText}
-          onChangeText={setDestinationText}
-          style={styles.textInput}
-          placeholder='Where to?' />
+
+        {/* Componente de la libreria de mapas para autocompletar lugares */}
+        <GooglePlacesAutocomplete
+          placeholder='Search'
+          onPress={(data, details = null) => {
+            // 'details' is provided when fetchDetails = true
+            // console.log(data, details);
+            setOriginPlace({ data, details })
+          }}
+          styles={{
+            textInput: styles.textInput
+          }}
+          fetchDetails
+          query={{
+            key: 'AIzaSyAy0vEOdCTA8zh1uvwJfdmH_rMg5mftXI0',
+            language: 'es',
+          }}
+        />
+
+        {/* Componente de la libreria de mapas para autocompletar lugares */}
+        <GooglePlacesAutocomplete
+          placeholder='Search'
+          onPress={(data, details = null) => {
+            // 'details' is provided when fetchDetails = true
+            // console.log(data, details);
+            setDestinationPlace({ data, details })
+          }}
+          styles={{
+            textInput: styles.textInput
+          }}
+          fetchDetails
+          query={{
+            key: 'AIzaSyAy0vEOdCTA8zh1uvwJfdmH_rMg5mftXI0',
+            language: 'es',
+          }}
+        />
+
       </View>
-    </SafeAreaView>
+    </SafeAreaView >
   )
 }
 
