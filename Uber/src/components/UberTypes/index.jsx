@@ -14,7 +14,6 @@ function UberTypes() {
 
     return (
         <View>
-            <Text>UberTypesComponent</Text>
             {typesData.map(type => (
                 <UberTypeRow type={type} />
             ))}
