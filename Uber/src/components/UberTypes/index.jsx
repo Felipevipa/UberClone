@@ -15,7 +15,7 @@ function UberTypes() {
     return (
         <View>
             {typesData.map(type => (
-                <UberTypeRow type={type} />
+                <UberTypeRow key={type.id} type={type} />
             ))}
 
             <Pressable
