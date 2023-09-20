@@ -35,7 +35,7 @@ function HomeMap() {
             }}>
             {cars.map((item) => (
                 <Marker
-                    key={cars.id}
+                    key={item.id}
                     coordinate={{
                         latitude: item.latitude,
                         longitude: item.longitude,
