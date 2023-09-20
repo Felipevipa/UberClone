@@ -22,9 +22,9 @@ function App(): JSX.Element {
       <StatusBar
         barStyle='dark-content'
       />
-      <HomeScreen />
+      {/* <HomeScreen /> */}
       {/* <DestinationSearch /> */}
-      {/* <SearchResults /> */}
+      <SearchResults />
     </>
   );
 }

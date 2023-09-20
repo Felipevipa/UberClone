@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dimensions, View } from 'react-native'
-import HomeMap from '../../components/HomeMap'
 import UberTypes from '../../components/UberTypes'
+import RouteMap from '../../components/RouteMap'
 
 
 function SearchResults() {
@@ -13,7 +13,7 @@ function SearchResults() {
       <View style={{
         height: Dimensions.get('window').height - 410
       }}>
-        <HomeMap />
+        <RouteMap />
       </View>
       <View style={{
         height: 410,
