@@ -12,6 +12,7 @@ import {
 
 import HomeScreen from './src/screens/HomeScreen';
 import DestinationSearch from './src/screens/DestinationSearch';
+import SearchResults from './src/screens/SearchResults';
 
 
 function App(): JSX.Element {
@@ -22,7 +23,8 @@ function App(): JSX.Element {
         barStyle='dark-content'
       />
       {/* <HomeScreen /> */}
-      <DestinationSearch />
+      {/* <DestinationSearch /> */}
+      <SearchResults />
     </>
   );
 }
