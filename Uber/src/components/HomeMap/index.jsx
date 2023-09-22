@@ -33,12 +33,12 @@ function HomeMap() {
                 latitudeDelta: 0.0222,
                 longitudeDelta: 0.0121,
             }}>
-            {cars.map((item) => (
+            {cars.map((car) => (
                 <Marker
-                    key={item.id}
+                    key={car.id}
                     coordinate={{
-                        latitude: item.latitude,
-                        longitude: item.longitude,
+                        latitude: car.latitude,
+                        longitude: car.longitude,
                     }}
                 // image={require('../../assets/images/top-UberX.png')}
                 >
@@ -46,9 +46,12 @@ function HomeMap() {
                         style={{
                             width: 70,
                             height: 70,
-                            resizeMode: 'contain'
+                            resizeMode: 'contain',
+                            transform: [{
+                                rotate: `${car.heading}deg`
+                            }]
                         }}
-                        source={getImage(item.type)} />
+                        source={getImage(car.type)} />
                 </Marker>
             ))}
 

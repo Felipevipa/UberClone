@@ -23,8 +23,8 @@ function App(): JSX.Element {
         barStyle='dark-content'
       />
       {/* <HomeScreen /> */}
-      {/* <DestinationSearch /> */}
-      <SearchResults />
+      <DestinationSearch />
+      {/* <SearchResults /> */}
     </>
   );
 }
