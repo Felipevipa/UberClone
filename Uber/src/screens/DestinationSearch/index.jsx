@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { View, TextInput, SafeAreaView } from "react-native"
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import PlaceRow from './PlaceRow';
 
 import styles from './styles'
 
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+const homePlace = {
+  description: 'Home',
+  geometry: { location: {lat: 48.8152937, lng: 2.4597668}}
+}
+
+const workPlace = {
+  description: 'Work',
+  geometry: { location: {lat: 48.8496818, lng: 2.2940881}}
+}
+
 
 function DestinationSearch() {
 
@@ -32,6 +42,8 @@ function DestinationSearch() {
           }}
           enablePoweredByContainer={false}
           suppressDefaultStyles
+          currentLocation={true}
+          currentLocationLabel='Current Location'
           styles={{
             textInput: styles.textInput,
             container: styles.autoCompleteContainer,
@@ -44,6 +56,8 @@ function DestinationSearch() {
             language: 'es',
           }}
           renderRow={(data) => <PlaceRow data={data} />}
+          renderDescription={(data) => data.description || data.vicinity}
+          predefinedPlaces={[homePlace, workPlace]}
         />
 
         {/* Componente de la libreria de mapas para autocompletar lugares */}
