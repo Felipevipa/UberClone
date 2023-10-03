@@ -10,6 +10,9 @@ import {
 
 
 import * as Location from 'expo-location';
+
+import { withAuthenticator } from '@aws-amplify/ui-react-native'
+
 import RootNavigator from './src/navigation/Root';
 
 import { Amplify } from 'aws-amplify';
@@ -17,7 +20,7 @@ import awsExports from './src/aws-exports';
 Amplify.configure(awsExports);
 
 
-export default function App() {
+function App() {
 
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
@@ -40,8 +43,9 @@ export default function App() {
   return (
     <>
       <StatusBar style="auto" />
-      <RootNavigator/>
+      <RootNavigator />
     </>
   );
 }
 
+export default withAuthenticator(App);

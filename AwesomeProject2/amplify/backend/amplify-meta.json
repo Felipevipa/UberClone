@@ -9,7 +9,121 @@
       "UnauthRoleName": "amplify-uberbackendamplify-dev-105416-unauthRole",
       "StackName": "amplify-uberbackendamplify-dev-105416",
       "StackId": "arn:aws:cloudformation:us-east-1:437827670468:stack/amplify-uberbackendamplify-dev-105416/1c5dec60-6205-11ee-ba0c-0a5565375aa1",
-      "AmplifyAppId": "d2taaxhk2ibmmd"
+      "AmplifyAppId": "d2taaxhk2ibmmd",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-uberbackendamplify-dev-105416-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    }
+  },
+  "api": {
+    "UberClone": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "uberbackendamplifybaae4bd4baae4bd4"
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [],
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authuberbackendamplifybaae4bd4baae4bd4"
+            }
+          }
+        },
+        "GraphQLAPIIdOutput": "gqxovsgotjakpdfwkn5v6dtt5u",
+        "GraphQLAPIEndpointOutput": "https://nyvssahnbzctdhw6xarnpjfi2i.appsync-api.us-east-1.amazonaws.com/graphql"
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-uberbackendamplify-dev-105416-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apiUberClone"
+      },
+      "lastPushTimeStamp": "2023-10-03T18:17:53.667Z",
+      "lastPushDirHash": "cnKPU6Y8mIlxqxiG8gEojAf7EuQ="
+    }
+  },
+  "auth": {
+    "uberbackendamplifybaae4bd4baae4bd4": {
+      "customAuth": false,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "uberbackendamplifybaae4bd4baae4bd4PostConfirmation",
+          "triggerProvider": "Cognito"
+        }
+      ],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-uberbackendamplify-dev-105416-deployment/amplify-cfn-templates/auth/uberbackendamplifybaae4bd4baae4bd4-cloudformation-template.json",
+        "logicalId": "authuberbackendamplifybaae4bd4baae4bd4"
+      },
+      "lastPushTimeStamp": "2023-10-03T18:17:53.667Z",
+      "output": {
+        "UserPoolId": "us-east-1_ruLwZYwab",
+        "AppClientIDWeb": "6pe7fuq614rv7ln4r8kcojldla",
+        "AppClientID": "4d0pqbb4e8e8jpshb3i38e7bst",
+        "IdentityPoolId": "us-east-1:94d934a8-fe66-4351-bc20-16fd59c99fd8",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:437827670468:userpool/us-east-1_ruLwZYwab",
+        "IdentityPoolName": "uberbackendamplifybaae4bd4_identitypool_baae4bd4__dev",
+        "UserPoolName": "uberbackendamplifybaae4bd4_userpool_baae4bd4"
+      },
+      "lastPushDirHash": "XHlq7IIkke5ESNClUtTKzRZ9OGg="
+    }
+  },
+  "function": {
+    "uberbackendamplifybaae4bd4baae4bd4PostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "lastBuildTimeStamp": "2023-10-03T18:14:44.610Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2023-10-03T18:14:45.479Z",
+      "distZipFilename": "uberbackendamplifybaae4bd4baae4bd4PostConfirmation-594576665873482b5435-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-uberbackendamplify-dev-105416-deployment",
+        "s3Key": "amplify-builds/uberbackendamplifybaae4bd4baae4bd4PostConfirmation-594576665873482b5435-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-uberbackendamplify-dev-105416-deployment/amplify-cfn-templates/function/uberbackendamplifybaae4bd4baae4bd4PostConfirmation-cloudformation-template.json",
+        "logicalId": "functionuberbackendamplifybaae4bd4baae4bd4PostConfirmation"
+      },
+      "lastPushTimeStamp": "2023-10-03T18:17:53.667Z",
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::437827670468:role/uberbackendamplifybaae4bd4baae4bd4PostConfirmation-dev",
+        "Region": "us-east-1",
+        "Arn": "arn:aws:lambda:us-east-1:437827670468:function:uberbackendamplifybaae4bd4baae4bd4PostConfirmation-dev",
+        "Name": "uberbackendamplifybaae4bd4baae4bd4PostConfirmation-dev",
+        "LambdaExecutionRole": "uberbackendamplifybaae4bd4baae4bd4PostConfirmation-dev"
+      },
+      "lastPushDirHash": "i7dOvn6c51Ks6FCebVRgdvC5FtU="
     }
   }
 }
