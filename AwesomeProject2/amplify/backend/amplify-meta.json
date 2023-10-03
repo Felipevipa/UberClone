@@ -1,0 +1,15 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-uberbackendamplify-dev-105416-authRole",
+      "UnauthRoleArn": "arn:aws:iam::437827670468:role/amplify-uberbackendamplify-dev-105416-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::437827670468:role/amplify-uberbackendamplify-dev-105416-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-uberbackendamplify-dev-105416-deployment",
+      "UnauthRoleName": "amplify-uberbackendamplify-dev-105416-unauthRole",
+      "StackName": "amplify-uberbackendamplify-dev-105416",
+      "StackId": "arn:aws:cloudformation:us-east-1:437827670468:stack/amplify-uberbackendamplify-dev-105416/1c5dec60-6205-11ee-ba0c-0a5565375aa1",
+      "AmplifyAppId": "d2taaxhk2ibmmd"
+    }
+  }
+}
