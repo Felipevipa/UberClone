@@ -10,6 +10,7 @@ function SearchResults(props) {
   const route = useRoute();
 
   console.warn(route.params);
+  const { originPlace, destinationPlace } = route.params
 
   return (
     <View style={{
@@ -19,7 +20,7 @@ function SearchResults(props) {
       <View style={{
         height: Dimensions.get('window').height - 410
       }}>
-        <RouteMap />
+        <RouteMap origin={originPlace} destination={destinationPlace} />
       </View>
       <View style={{
         height: 410,
