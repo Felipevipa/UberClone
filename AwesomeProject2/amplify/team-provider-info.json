@@ -19,7 +19,7 @@
       "function": {
         "uberbackendamplifybaae4bd4baae4bd4PostConfirmation": {
           "deploymentBucketName": "amplify-uberbackendamplify-dev-105416-deployment",
-          "s3Key": "amplify-builds/uberbackendamplifybaae4bd4baae4bd4PostConfirmation-594576665873482b5435-build.zip"
+          "s3Key": "amplify-builds/uberbackendamplifybaae4bd4baae4bd4PostConfirmation-4a6b3552634e476b4b67-build.zip"
         }
       },
       "api": {

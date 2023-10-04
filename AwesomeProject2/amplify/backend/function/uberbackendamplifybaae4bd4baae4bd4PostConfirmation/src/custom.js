@@ -7,27 +7,34 @@
 // };
 
 
-var aws = require('aws-sdk')
-var ddb = new aws.DynamoDB()
+// import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+// import { PutCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
+
+const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
+const { PutCommand, DynamoDBDocumentClient } = require("@aws-sdk/lib-dynamodb");
+
+const client = new DynamoDBClient({});
+const docClient = DynamoDBDocumentClient.from(client);
 
 exports.handler = async (event, context) => {
     let date = new Date()
     if (event.request.userAttributes.sub) {
-        let params = {
+        let command = new PutCommand({
             Item: {
-                'id': {S: event.request.userAttributes.sub},
-                '__typename': {S: 'User'},
-                'username': {S: event.userName},
-                'email': {S: event.request.userAttributes.email},
-                'createdAt': {S: date.toISOString()},
-                'updatedAt': {S: date.toISOString()},
+                'id': event.request.userAttributes.sub,
+                '__typename': 'User',
+                'username': event.userName,
+                'email': event.request.userAttributes.email,
+                'createdAt': date.toISOString(),
+                'updatedAt': date.toISOString(),
             },
             TableName: process.env.USERTABLE
-        }
+        })
 
         try {
-            await ddb.putItem(params).promise()
-            console.log("Success")
+            const response = await docClient.send(command)
+            console.log("Success");
+            console.log(response);
         } catch (err) {
             console.log("Error", err)
         }
