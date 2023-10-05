@@ -82,6 +82,11 @@ export const getOrder = /* GraphQL */ `
     getOrder(id: $id) {
       id
       createdAt
+      type
+      originLatitude
+      originLongitude
+      destLatitude
+      destLongitude
       userId
       user {
         id
@@ -117,6 +122,11 @@ export const listOrders = /* GraphQL */ `
       items {
         id
         createdAt
+        type
+        originLatitude
+        originLongitude
+        destLatitude
+        destLongitude
         userId
         carId
         updatedAt

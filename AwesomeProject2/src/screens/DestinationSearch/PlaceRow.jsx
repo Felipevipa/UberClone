@@ -5,7 +5,7 @@ import Entypo from "react-native-vector-icons/Entypo"
 import styles from './styles'
 
 function PlaceRow({ data }) {
-    console.log(data);
+    // console.log(data);
     return (
         <View style={styles.row}>
             <View style={styles.iconContainer}>

@@ -6,20 +6,23 @@ import UberTypeRow from '../UberTypeRow'
 
 import typesData from '../../assets/data/types'
 
-function UberTypes() {
+function UberTypes({ typeState, onSubmit }) {
 
-    const confirm = () => {
-        console.warn('confirm');
-    }
+    const [selectedType, setSelectedType] = typeState;
 
     return (
         <View>
             {typesData.map(type => (
-                <UberTypeRow key={type.id} type={type} />
+                <UberTypeRow
+                    key={type.id}
+                    type={type}
+                    isSelected={type.type === selectedType}
+                    onPress={() => setSelectedType(type.type)}
+                />
             ))}
 
             <Pressable
-                onPress={confirm}
+                onPress={onSubmit}
                 style={{
                     backgroundColor: 'black',
                     padding: 10,

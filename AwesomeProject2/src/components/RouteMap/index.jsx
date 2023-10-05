@@ -8,6 +8,7 @@ function RouteMap({ origin, destination }) {
     
     const GOOGLE_MAPS_API_KEY = 'AIzaSyAy0vEOdCTA8zh1uvwJfdmH_rMg5mftXI0'
 
+    
     const originLoc = {
         latitude: origin.details.geometry.location.lat,
         longitude: origin.details.geometry.location.lng
@@ -17,15 +18,6 @@ function RouteMap({ origin, destination }) {
         longitude: destination.details.geometry.location.lng
     };
 
-    // const originLoc = {
-    //     latitude: 28.450627,
-    //     longitude: -16.263045,
-    // }
-
-    // const destinationLoc = {
-    //     latitude: 28.460127,
-    //     longitude: -16.269045,
-    // }
 
     return (
         <>
@@ -40,8 +32,8 @@ function RouteMap({ origin, destination }) {
                     initialRegion={{
                         // latitude: 4.570868,
                         // longitude: -74.297333,
-                        latitude: 28.450627,
-                        longitude: -16.263045,
+                        latitude: originLoc.latitude,
+                        longitude: originLoc.longitude,
                         latitudeDelta: 0.0222,
                         longitudeDelta: 0.0121,
                     }}>

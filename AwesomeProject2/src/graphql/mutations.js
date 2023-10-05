@@ -129,6 +129,11 @@ export const createOrder = /* GraphQL */ `
     createOrder(input: $input, condition: $condition) {
       id
       createdAt
+      type
+      originLatitude
+      originLongitude
+      destLatitude
+      destLongitude
       userId
       user {
         id
@@ -162,6 +167,11 @@ export const updateOrder = /* GraphQL */ `
     updateOrder(input: $input, condition: $condition) {
       id
       createdAt
+      type
+      originLatitude
+      originLongitude
+      destLatitude
+      destLongitude
       userId
       user {
         id
@@ -195,6 +205,11 @@ export const deleteOrder = /* GraphQL */ `
     deleteOrder(input: $input, condition: $condition) {
       id
       createdAt
+      type
+      originLatitude
+      originLongitude
+      destLatitude
+      destLongitude
       userId
       user {
         id

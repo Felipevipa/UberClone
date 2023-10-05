@@ -108,6 +108,11 @@ export const onCreateOrder = /* GraphQL */ `
     onCreateOrder {
       id
       createdAt
+      type
+      originLatitude
+      originLongitude
+      destLatitude
+      destLongitude
       userId
       user {
         id
@@ -138,6 +143,11 @@ export const onUpdateOrder = /* GraphQL */ `
     onUpdateOrder {
       id
       createdAt
+      type
+      originLatitude
+      originLongitude
+      destLatitude
+      destLongitude
       userId
       user {
         id
@@ -168,6 +178,11 @@ export const onDeleteOrder = /* GraphQL */ `
     onDeleteOrder {
       id
       createdAt
+      type
+      originLatitude
+      originLongitude
+      destLatitude
+      destLongitude
       userId
       user {
         id

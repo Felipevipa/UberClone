@@ -53,8 +53,8 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-uberbackendamplify-dev-105416-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiUberClone"
       },
-      "lastPushTimeStamp": "2023-10-05T16:48:20.324Z",
-      "lastPushDirHash": "6hmYXHqW8qyMioay2eEQLGRUiPA="
+      "lastPushTimeStamp": "2023-10-05T17:37:26.217Z",
+      "lastPushDirHash": "X99xigmHkA+gyLI2XNxNcXt0LVM="
     }
   },
   "auth": {
@@ -95,7 +95,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-uberbackendamplify-dev-105416-deployment/amplify-cfn-templates/auth/uberbackendamplifybaae4bd4baae4bd4-cloudformation-template.json",
         "logicalId": "authuberbackendamplifybaae4bd4baae4bd4"
       },
-      "lastPushTimeStamp": "2023-10-05T16:48:15.574Z",
+      "lastPushTimeStamp": "2023-10-05T17:37:23.745Z",
       "output": {
         "UserPoolId": "us-east-1_ruLwZYwab",
         "AppClientIDWeb": "6pe7fuq614rv7ln4r8kcojldla",
@@ -125,7 +125,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-uberbackendamplify-dev-105416-deployment/amplify-cfn-templates/function/uberbackendamplifybaae4bd4baae4bd4PostConfirmation-cloudformation-template.json",
         "logicalId": "functionuberbackendamplifybaae4bd4baae4bd4PostConfirmation"
       },
-      "lastPushTimeStamp": "2023-10-05T16:48:15.582Z",
+      "lastPushTimeStamp": "2023-10-05T17:37:23.752Z",
       "output": {
         "LambdaExecutionRoleArn": "arn:aws:iam::437827670468:role/uberbackendamplifybaae4bd4baae4bd4PostConfirmation-dev",
         "Region": "us-east-1",

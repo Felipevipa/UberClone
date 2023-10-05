@@ -25,6 +25,13 @@ type Order
   @key(name: "byCar", fields: ["carId", "createdAt"]) {
   id: ID!
   createdAt: ID!
+  
+  type: String!
+  originLatitude: Float!
+  originLongitude: Float!
+
+  destLatitude: Float!
+  destLongitude: Float!
 
   userId: ID!
   user: User @connection(fields: ["userId"])
