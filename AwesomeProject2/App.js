@@ -35,7 +35,7 @@ function App() {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-      console.log(location);
+      // console.log(location);
       setLocation(location);
     })();
   }, []);
