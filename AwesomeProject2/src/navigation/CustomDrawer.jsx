@@ -69,7 +69,7 @@ function CustomDrawer(props) {
                         console.log('error signing out: ', error);
                     }
                 }}>
-                    <Text style={{ padding: 5 }}>Sign Out</Text>
+                    <Text style={{ padding: 5, paddingLeft: 20, }}>Logout</Text>
                 </Pressable>
             </View>
         </DrawerContentScrollView>
