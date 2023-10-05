@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
-import { Dimensions, View, ScrollView } from 'react-native'
+import { Dimensions, View, ScrollView, Alert } from 'react-native'
 import { API, graphqlOperation, Auth } from 'aws-amplify'
 import { createOrder } from '../../graphql/mutations'
 
 import UberTypes from '../../components/UberTypes'
 import RouteMap from '../../components/RouteMap'
 
-import { useRoute } from '@react-navigation/native'
+import { useRoute, useNavigation } from '@react-navigation/native'
 
 function SearchResults(props) {
 
   const typeState = useState(null)
 
   const route = useRoute();
+  const navigation = useNavigation();
 
   // console.warn(route.params);
   const { originPlace, destinationPlace } = route.params
@@ -45,12 +46,20 @@ function SearchResults(props) {
       const response = await API.graphql(
         graphqlOperation(
           createOrder, {
-            input
-          }
+          input
+        }
         )
       )
 
       console.log(response);
+      Alert.alert(
+        "Hurraaay",
+        "Your order has been submitted",
+        [{
+          text: "Go Home",
+          onPress: () => { navigation.navigate('Home') }
+        }]
+      )
     } catch (e) {
       console.error(e);
     }
