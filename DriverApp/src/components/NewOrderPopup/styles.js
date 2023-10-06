@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         width: '100%',
         padding: 20,
-        height: '98%',
+        height: '100%',
         justifyContent: 'space-between',
         backgroundColor: '#00000050',
     },
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         width: 100,
         alignItems: 'center',
+        marginTop: 20,
     },
     declineText: {
         color: 'white',
