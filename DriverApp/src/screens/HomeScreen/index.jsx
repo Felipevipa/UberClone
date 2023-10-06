@@ -4,6 +4,7 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import MapViewDirections from 'react-native-maps-directions'
 
 import Entypo from 'react-native-vector-icons/Entypo'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import styles from './styles'
 
@@ -102,13 +103,13 @@ const HomeScreen = () => {
             </View>
 
             <View style={styles.bottomContainer}>
-                <Entypo name={"menu"} size={24} color={"#4a4a4a"} />
+                <Ionicons name={"options"} size={30} color={"#4a4a4a"} />
                 {isOnline
                     ? <Text style={styles.bottomText}>You're online</Text>
                     : <Text style={styles.bottomText}>You're offline</Text>
                 }
 
-                <Entypo name={"menu"} size={24} color={"#4a4a4a"} />
+                <Entypo name={"menu"} size={30} color={"#4a4a4a"} />
             </View>
         </View>
     )
