@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Alert, Dimensions, Pressable, Text, View } from 'react-native'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import MapViewDirections from 'react-native-maps-directions'
@@ -10,6 +10,12 @@ import styles from './styles'
 const GOOGLE_MAPS_API_KEY = 'AIzaSyAy0vEOdCTA8zh1uvwJfdmH_rMg5mftXI0'
 
 const HomeScreen = () => {
+
+    const [isOnline, setIsOnline] = useState(false)
+
+    const onGoPress = () => {
+        setIsOnline(!isOnline)
+    }
 
     return (
         <View>
@@ -50,8 +56,8 @@ const HomeScreen = () => {
                     onPress={() => { Alert.alert('Click', 'Balance') }}
                 >
                     <Text style={styles.balanceText}>
-                        <Text style={{color: 'green'}}>$</Text>
-                        {' '}00:00
+                        <Text style={{ color: 'green' }}>$</Text>
+                        {' '}0:00
                     </Text>
                 </Pressable>
             </View>
@@ -87,15 +93,21 @@ const HomeScreen = () => {
             <View style={styles.goButtonContainer}>
                 <Pressable
                     style={[styles.goButton]}
-                    onPress={() => { Alert.alert('Click', 'boton GO') }}
+                    onPress={onGoPress}
                 >
-                    <Text style={styles.goText}>GO</Text>
+                    <Text style={styles.goText}>
+                        {isOnline ? 'END' : 'GO'}
+                    </Text>
                 </Pressable>
             </View>
 
             <View style={styles.bottomContainer}>
                 <Entypo name={"menu"} size={24} color={"#4a4a4a"} />
-                <Text style={styles.bottomText}>You're offline</Text>
+                {isOnline
+                    ? <Text style={styles.bottomText}>You're online</Text>
+                    : <Text style={styles.bottomText}>You're offline</Text>
+                }
+
                 <Entypo name={"menu"} size={24} color={"#4a4a4a"} />
             </View>
         </View>
