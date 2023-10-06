@@ -6,6 +6,8 @@ import MapViewDirections from 'react-native-maps-directions'
 import Entypo from 'react-native-vector-icons/Entypo'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
+import NewOrderPopup from '../../components/NewOrderPopup'
+
 import styles from './styles'
 
 const GOOGLE_MAPS_API_KEY = 'AIzaSyAy0vEOdCTA8zh1uvwJfdmH_rMg5mftXI0'
@@ -111,6 +113,8 @@ const HomeScreen = () => {
 
                 <Entypo name={"menu"} size={30} color={"#4a4a4a"} />
             </View>
+
+            <NewOrderPopup />
         </View>
     )
 }
