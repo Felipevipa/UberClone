@@ -29,8 +29,8 @@ const HomeScreen = () => {
         originLatitude: 4.4734,
         originLongitude: -74.1252,
 
-        destLatitude: 4.47,
-        destLongitude: -74.1292,
+        destLatitude: 4.4917,
+        destLongitude: -74.1188,
 
         user: {
             rating: 4.6,
@@ -62,6 +62,7 @@ const HomeScreen = () => {
                 ...order,
                 distance: event.distance,
                 duration: event.duration,
+                isFinished: order.pickedUp && order.distance < 0.2,
             })
         }
     }
@@ -91,6 +92,18 @@ const HomeScreen = () => {
 
 
     const renderBottomTitle = () => {
+
+        if (order && order.isFinished) {
+        // if (true) {
+            return (
+                <View style={{ alignItems: 'center' }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#cb1a1a', width: 200, padding: 10, }}>
+                        <Text style={{color: 'white', fontWeight: 'bold',}}>COMPLETE {order.type}</Text>
+                    </View>
+                    <Text style={styles.bottomText}> {order.user.name}</Text>
+                </View>
+            )
+        }
 
         if (order && order.pickedUp) {
             return (
