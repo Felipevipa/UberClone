@@ -6,11 +6,12 @@ import * as Location from 'expo-location';
 
 import HomeScreen from './src/screens/HomeScreen';
 import { Amplify } from 'aws-amplify';
+import { withAuthenticator } from '@aws-amplify/ui-react-native'
 import config from './src/aws-exports'
 
 Amplify.configure(config);
 
-export default function App() {
+function App() {
 
   useEffect(() => {
     (async () => {
@@ -38,3 +39,5 @@ export default function App() {
     </>
   );
 }
+
+export default withAuthenticator(App);
