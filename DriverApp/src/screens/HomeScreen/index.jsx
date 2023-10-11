@@ -52,9 +52,21 @@ const HomeScreen = () => {
         setIsOnline(!isOnline)
     }
 
-    onUserLocationChange = (event) => { 
+    onUserLocationChange = (event) => {
         setMyPosition(event.nativeEvent.coordinate)
-     }
+    }
+
+    const onDirectionFound = (event) => {
+        console.log("Direction");
+        console.log(event);
+        if (order) {
+            setOrder({
+                ...order,
+                distance: event.distance,
+                duration: event.duration,
+            })
+        }
+    }
 
 
     const renderBottomTitle = () => {
@@ -62,11 +74,11 @@ const HomeScreen = () => {
             return (
                 <View style={{ alignItems: 'center' }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <Text>1 min</Text>
+                        <Text>{order.duration ? order.duration.toFixed(1) : '?'} min</Text>
                         <View style={{ backgroundColor: '#1e9203', marginHorizontal: 10, width: 30, height: 30, alignItems: 'center', justifyContent: 'center', borderRadius: 20 }}>
                             <FontAwesome name="user" color="white" size={20} />
                         </View>
-                        <Text>0.2 mi</Text>
+                        <Text>{order.distance ? order.distance.toFixed(1) : '?'} Km</Text>
                     </View>
                     <Text style={styles.bottomText}>Picking up {order.user.name}</Text>
                 </View>
@@ -103,6 +115,7 @@ const HomeScreen = () => {
                             latitude: order.originLatitude,
                             longitude: order.originLongitude,
                         }}
+                        onReady={onDirectionFound}
                         apikey={GOOGLE_MAPS_API_KEY}
                         strokeWidth={5}
                         strokeColor='black'
