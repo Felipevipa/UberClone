@@ -8,7 +8,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 import { Auth, API, graphqlOperation } from 'aws-amplify'
-import { updateCar } from '../../graphql/mutations'
+import { updateCar, updateOrder } from '../../graphql/mutations'
 import { getCar, listOrders } from '../../graphql/queries'
 
 import NewOrderPopup from '../../components/NewOrderPopup'
@@ -69,9 +69,23 @@ const HomeScreen = () => {
         setNewOrders(newOrders.slice(1))
     }
 
-    const onAccept = (newOrder) => {
-        // Pending update order state in database
-        setOrder(newOrder);
+    const onAccept = async (newOrder) => {
+        try {
+            const input = {
+                id: newOrder.id,
+                status: "PICKING_UP_CLIENT",
+                carId: car.id,
+            }
+            const orderData = await API.graphql(
+                graphqlOperation(
+                    updateOrder,
+                    { input }
+                )
+            )
+            setOrder(newOrder);
+        } catch (error) {
+            console.error(error);
+        }
         setNewOrders(newOrders.slice(1));
     }
 
@@ -97,7 +111,7 @@ const HomeScreen = () => {
 
     onUserLocationChange = async (event) => {
         setMyPosition(event.nativeEvent.coordinate)
-        const {latitude, longitude, heading} = event.nativeEvent.coordinate
+        const { latitude, longitude, heading } = event.nativeEvent.coordinate
         try {
             const userData = await Auth.currentAuthenticatedUser()
             const input = {
