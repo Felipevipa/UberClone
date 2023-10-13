@@ -7,6 +7,10 @@ import Entypo from 'react-native-vector-icons/Entypo'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
+import { Auth, API, graphqlOperation } from 'aws-amplify'
+import { updateCar } from '../../graphql/mutations'
+import { getCar } from '../../graphql/queries'
+
 import NewOrderPopup from '../../components/NewOrderPopup'
 
 import styles from './styles'
@@ -18,6 +22,7 @@ const destination = { latitude: 4.47, longitude: -74.1292, }
 
 
 const HomeScreen = () => {
+    const [car, setCar] = useState(null)
     const [isOnline, setIsOnline] = useState(false)
     const [myPosition, setMyPosition] = useState(null)
     const [order, setOrder] = useState(null)
@@ -39,6 +44,28 @@ const HomeScreen = () => {
 
     })
 
+    const fetchCar = async () => {
+        try {
+            const userData = await Auth.currentAuthenticatedUser();
+            const carData = await API.graphql(
+                graphqlOperation(
+                    getCar,
+                    { id: userData.attributes.sub }
+                )
+            )
+
+            setCar(carData.data.getCar);
+
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    useEffect(() => {
+        fetchCar()
+    }, [])
+
+
     const onDecline = () => {
         setNewOrder(null)
     }
@@ -48,8 +75,25 @@ const HomeScreen = () => {
         setNewOrder(null);
     }
 
-    const onGoPress = () => {
-        setIsOnline(!isOnline)
+    const onGoPress = async () => {
+        setIsOnline(!isOnline);
+        //Update the car and set it to active
+        try {
+            const userData = await Auth.currentAuthenticatedUser()
+            const input = {
+                id: userData.attributes.sub,
+                isActive: !car.isActive
+            }
+            const updatedCarData = await API.graphql(
+                graphqlOperation(
+                    updateCar,
+                    { input }
+                )
+            )
+            setCar(updatedCarData.data.updateCar)
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     onUserLocationChange = (event) => {
@@ -94,11 +138,11 @@ const HomeScreen = () => {
     const renderBottomTitle = () => {
 
         if (order && order.isFinished) {
-        // if (true) {
+            // if (true) {
             return (
                 <View style={{ alignItems: 'center' }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#cb1a1a', width: 200, padding: 10, }}>
-                        <Text style={{color: 'white', fontWeight: 'bold',}}>COMPLETE {order.type}</Text>
+                        <Text style={{ color: 'white', fontWeight: 'bold', }}>COMPLETE {order.type}</Text>
                     </View>
                     <Text style={styles.bottomText}> {order.user.name}</Text>
                 </View>
@@ -134,7 +178,7 @@ const HomeScreen = () => {
                 </View>
             )
         }
-        if (isOnline) {
+        if (car?.isActive) {
             return (<Text style={styles.bottomText}>You're online</Text>)
 
         }
@@ -215,7 +259,7 @@ const HomeScreen = () => {
                     onPress={onGoPress}
                 >
                     <Text style={styles.goText}>
-                        {isOnline ? 'END' : 'GO'}
+                        {car?.isActive ? 'END' : 'GO'}
                     </Text>
                 </Pressable>
             </View>
