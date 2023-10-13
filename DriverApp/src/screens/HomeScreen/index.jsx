@@ -70,6 +70,7 @@ const HomeScreen = () => {
     }
 
     const onAccept = (newOrder) => {
+        // Pending update order state in database
         setOrder(newOrder);
         setNewOrders(newOrders.slice(1));
     }
@@ -94,8 +95,27 @@ const HomeScreen = () => {
         }
     }
 
-    onUserLocationChange = (event) => {
+    onUserLocationChange = async (event) => {
         setMyPosition(event.nativeEvent.coordinate)
+        const {latitude, longitude, heading} = event.nativeEvent.coordinate
+        try {
+            const userData = await Auth.currentAuthenticatedUser()
+            const input = {
+                id: userData.attributes.sub,
+                latitude,
+                longitude,
+                heading,
+            }
+            const updatedCarData = await API.graphql(
+                graphqlOperation(
+                    updateCar,
+                    { input }
+                )
+            )
+            setCar(updatedCarData.data.updateCar)
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     const onDirectionFound = (event) => {
@@ -142,7 +162,7 @@ const HomeScreen = () => {
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#cb1a1a', width: 200, padding: 10, }}>
                         <Text style={{ color: 'white', fontWeight: 'bold', }}>COMPLETE {order.type}</Text>
                     </View>
-                    <Text style={styles.bottomText}> {order.user.name}</Text>
+                    <Text style={styles.bottomText}> {order.user.username}</Text>
                 </View>
             )
         }
@@ -157,7 +177,7 @@ const HomeScreen = () => {
                         </View>
                         <Text>{order.distance ? order.distance.toFixed(1) : '?'} Km</Text>
                     </View>
-                    <Text style={styles.bottomText}>Dropping off {order.user.name}</Text>
+                    <Text style={styles.bottomText}>Dropping off {order.user.username}</Text>
                 </View>
             )
         }
@@ -172,7 +192,7 @@ const HomeScreen = () => {
                         </View>
                         <Text>{order.distance ? order.distance.toFixed(1) : '?'} Km</Text>
                     </View>
-                    <Text style={styles.bottomText}>Picking up {order.user.name}</Text>
+                    <Text style={styles.bottomText}>Picking up {order.user.username}</Text>
                 </View>
             )
         }
