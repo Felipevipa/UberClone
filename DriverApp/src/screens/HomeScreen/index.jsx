@@ -23,7 +23,6 @@ const destination = { latitude: 4.47, longitude: -74.1292, }
 
 const HomeScreen = () => {
     const [car, setCar] = useState(null)
-    const [isOnline, setIsOnline] = useState(false)
     const [myPosition, setMyPosition] = useState(null)
     const [order, setOrder] = useState(null)
 
@@ -76,7 +75,6 @@ const HomeScreen = () => {
     }
 
     const onGoPress = async () => {
-        setIsOnline(!isOnline);
         //Update the car and set it to active
         try {
             const userData = await Auth.currentAuthenticatedUser()
