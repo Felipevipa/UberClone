@@ -8,26 +8,7 @@ import { listCars } from '../../graphql/queries'
 
 // import cars from '../../assets/data/cars'
 
-function HomeMap() {
-
-    const [cars, setCars] = useState([])
-
-    useEffect(() => {
-        const fetchCars = async () => {
-            try {
-                const response = await API.graphql(
-                    graphqlOperation(
-                        listCars
-                    )
-                )
-                // console.log(response);
-                setCars(response.data.listCars.items)
-            } catch (e) {
-                console.error(error);
-            }
-        }
-        fetchCars();
-    }, [])
+function OrderMap({ car }) {
 
 
     const getImage = (type) => {
@@ -50,16 +31,13 @@ function HomeMap() {
             provider={PROVIDER_GOOGLE}
             showsUserLocation={true}
             initialRegion={{
-                // latitude: 4.570868,
-                // longitude: -74.297333,
                 latitude: 4.4711701,
                 longitude: -74.1297033,
                 latitudeDelta: 0.0222,
                 longitudeDelta: 0.0121,
             }}>
-            {cars.map((car) => (
+            {car &&
                 <Marker
-                    key={car.id}
                     coordinate={{
                         latitude: car.latitude,
                         longitude: car.longitude,
@@ -77,10 +55,9 @@ function HomeMap() {
                         }}
                         source={getImage(car.type)} />
                 </Marker>
-            ))}
-
+            }
         </MapView>
     )
 }
 
-export default HomeMap
+export default OrderMap

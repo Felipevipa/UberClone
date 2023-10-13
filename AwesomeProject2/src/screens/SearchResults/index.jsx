@@ -53,14 +53,16 @@ function SearchResults(props) {
       )
 
       console.log(response);
-      Alert.alert(
-        "Hurraaay",
-        "Your order has been submitted",
-        [{
-          text: "Go Home",
-          onPress: () => { navigation.navigate('Home') }
-        }]
-      )
+      // Alert.alert(
+      //   "Hurraaay",
+      //   "Your order has been submitted",
+      //   [{
+      //     text: "Go Home",
+      //     onPress: () => { navigation.navigate('Home') }
+      //   }]
+      // )
+      navigation.navigate('OrderPage', { id: response.data.createOrder.id })
+
     } catch (e) {
       console.error(e);
     }
