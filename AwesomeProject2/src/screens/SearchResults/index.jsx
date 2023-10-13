@@ -40,7 +40,8 @@ function SearchResults(props) {
         destLongitude: destinationPlace.details.geometry.location.lng,
 
         userId: userInfo.attributes.sub,
-        carId: "1"
+        carId: "1",
+        status: "NEW",
       }
 
       const response = await API.graphql(
